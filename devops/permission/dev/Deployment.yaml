@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: permission
+  namespace: rgrpc-dev
+  labels:
+    app: permission
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: permission
+  template:
+    metadata:
+      labels:
+        app: permission
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      volumes:
+        - name: timezone
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+      containers:
+        - name: permission
+          image: REGISTRY_URL/PROJECT_NAME/IMAGE_NAME:IMAGE_VERSION
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9001
+            - containerPort: 50051
+          volumeMounts:
+            - name: timezone
+              mountPath: /etc/localtime

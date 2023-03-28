@@ -1,0 +1,157 @@
+pipeline{
+
+    agent   any
+
+    // Options
+    options {
+
+        // Setting the terminal display color
+        // Requires install ansiColor plugin
+        ansiColor('gnome-terminal')
+
+    }
+
+    // Global Variables
+    environment {
+
+        // Harbor Mirror Center Address
+        REGISTRY_URL = "YOUR_REGISTRY_URL"
+
+        // Project Project Name
+        PROJECT_NAME = "rgrpc-dev"
+
+        // Image Name
+        IMAGE_NAME = "auth"
+
+        // Image Version
+        IMAGE_VERSION = "$BUILD_ID"
+
+        // Dockerfile File Path
+        DOCKER_FILE = "$WORKSPACE/devops/auth/dev/Dockerfile"
+
+        // Deploy File Path
+        DEPLOY_FILE = "$WORKSPACE/devops/auth/dev/Deployment.yaml"
+
+        // Service File Path
+        SERVICE_FILE = "$WORKSPACE/devops/auth/dev/Service.yaml"
+
+        // Harbor Image name
+        REGISTRY_IMAGE_NAME = "$REGISTRY_URL/$PROJECT_NAME/$IMAGE_NAME:$IMAGE_VERSION"
+
+        // Get the last commit message
+        // Control the pipeline by commit message
+        COMMIT_MESSAGE = "${sh(script:'git log --pretty=format:\"%s\" $GIT_COMMIT -1' , returnStdout: true)}"
+
+    }
+
+    stages{
+        // Apply Action
+
+        // Build Image
+        stage('Build Image'){
+
+             when {
+                 environment name: 'COMMIT_MESSAGE',
+                 value: 'apply:deploy'
+             }
+
+            steps{
+
+                echo '>>>>>>>>>>>>>>>>>>START BUILD IMAGE<<<<<<<<<<<<<<<<<<<<'
+
+                // Build Image
+                sh "docker build -t $REGISTRY_IMAGE_NAME -f $DOCKER_FILE ."
+
+                echo '>>>>>>>>>>>>>>>>>>END BUILD IMAGE<<<<<<<<<<<<<<<<<<<<'
+
+                echo '>>>>>>>>>>>>>>>>>>START PUSH IMAGE<<<<<<<<<<<<<<<<<<<<'
+
+                // Account password desensitization
+                withCredentials([usernamePassword(credentialsId: 'harbor_secret', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh "echo $password | docker login https://$REGISTRY_URL -u $username --password-stdin"
+                }
+
+                // Push Image
+                sh "docker push $REGISTRY_IMAGE_NAME"
+
+                echo '>>>>>>>>>>>>>>>>>>END PUSH IMAGE<<<<<<<<<<<<<<<<<<<<'
+
+                echo '>>>>>>>>>>>>>>>>>>START DELETE IMAGE<<<<<<<<<<<<<<<<<<<<'
+
+                // Delete Local Image
+                sh "docker rmi $REGISTRY_IMAGE_NAME"
+
+                // Delete the cached intermediate image. If this is the first time you deploy a project, you can comment out this command first.
+                // Turn the parameter on again later. If you don't delete it, it will keep adding intermediate images and taking up disk space.
+                sh "docker image prune -f --filter \"until=10m\""
+
+                echo '>>>>>>>>>>>>>>>>>>END DELETE IMAGE<<<<<<<<<<<<<<<<<<<<'
+            }
+        }
+        // Apply Deployment
+        stage('Apply Deployment'){
+
+             when {
+                 environment name: 'COMMIT_MESSAGE',
+                 value: 'apply:deploy'
+             }
+            steps{
+
+                echo '>>>>>>>>>>>>>>>>>>START DEPLOY<<<<<<<<<<<<<<<<<<<<'
+
+                // Filtering replacement mirror addresses
+                sh "sed -i 's/REGISTRY_URL/$REGISTRY_URL/g' $DEPLOY_FILE"
+                sh "sed -i 's/PROJECT_NAME/$PROJECT_NAME/g' $DEPLOY_FILE"
+                sh "sed -i 's/IMAGE_NAME/$IMAGE_NAME/g' $DEPLOY_FILE"
+                sh "sed -i 's/IMAGE_VERSION/$IMAGE_VERSION/g' $DEPLOY_FILE"
+
+                // Implementing k8s Deployment
+                sh "kubectl apply -f $DEPLOY_FILE --record"
+
+                echo '>>>>>>>>>>>>>>>>>>END DEPLOY<<<<<<<<<<<<<<<<<<<<'
+
+            }
+        }
+        // Apply Service
+        stage('Apply Service'){
+
+             when {
+                 environment name: 'COMMIT_MESSAGE',
+                 value: 'apply:service'
+             }
+            steps{
+
+                echo '>>>>>>>>>>>>>>>>>>START APPLY SERVICE<<<<<<<<<<<<<<<<<<<<'
+
+                sh "kubectl apply -f $SERVICE_FILE"
+
+                echo '>>>>>>>>>>>>>>>>>>END APPLY SERVICE<<<<<<<<<<<<<<<<<<<<'
+
+            }
+        }
+
+        // Delete Action
+
+        // Delete Deployment
+        stage('Delete Deployment'){
+            when {
+                environment name: 'COMMIT_MESSAGE',
+                value: 'delete:deploy'
+            }
+            steps{
+                echo '>>>>>>>>>>>>>>>>>>START DELETE DEPLOY<<<<<<<<<<<<<<<<<<<<'
+
+                // Filtering replacement mirror addresses
+                sh "sed -i 's/REGISTRY_URL/$REGISTRY_URL/g' $DEPLOY_FILE"
+                sh "sed -i 's/PROJECT_NAME/$PROJECT_NAME/g' $DEPLOY_FILE"
+                sh "sed -i 's/IMAGE_NAME/$IMAGE_NAME/g' $DEPLOY_FILE"
+                sh "sed -i 's/IMAGE_VERSION/$IMAGE_VERSION/g' $DEPLOY_FILE"
+
+                // Execute Delete
+                sh "kubectl delete -f $DEPLOY_FILE"
+
+                echo '>>>>>>>>>>>>>>>>>>END DELETE DEPLOY<<<<<<<<<<<<<<<<<<<<'
+            }
+         }
+    }
+}
