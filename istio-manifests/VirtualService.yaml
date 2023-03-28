@@ -6,7 +6,7 @@ metadata:
   namespace: rgrpc-dev
 spec:
   hosts:
-    - "dev.api.rakour.com"
+    - "dev.api.baidu.com"
   gateways:
     - rgrpc
   http:
