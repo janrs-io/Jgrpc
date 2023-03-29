@@ -1,0 +1,11 @@
+# grpc config
+grpc:
+  host: ""
+  port: ":50051"
+  name: "pong-grpc"
+
+# http config
+http:
+  host: ""
+  port: ":9001"
+  name: "pong-http"

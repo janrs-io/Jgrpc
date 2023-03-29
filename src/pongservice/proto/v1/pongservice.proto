@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto.v1;
+
+option go_package = "github.com/janrs-io/Jgrpc/src/pongservice/genproto/v1";
+
+service PongService {
+  rpc Pong(PongRequest) returns(PongResponse){}
+}
+
+message PongRequest {
+  string msg = 1 ;
+}
+
+message PongResponse {
+  string msg = 1;
+}
