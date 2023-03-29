@@ -7,13 +7,11 @@ replace pongservice => ../pongservice
 require (
 	github.com/google/wire v0.5.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
-	github.com/janrs-io/Jgrpc/src/pongservice v0.0.0-20230329034941-b4320ffc1b5f
+	github.com/janrs-io/Jgrpc/src/pongservice v0.0.0-20230329160231-adff311e0732
 	github.com/spf13/viper v1.15.0
 	google.golang.org/grpc v1.54.0
 	google.golang.org/protobuf v1.30.0
 )
-
-//
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect

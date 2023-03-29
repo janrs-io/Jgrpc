@@ -2,11 +2,11 @@ package service
 
 import (
 	"context"
-	pongclientv1 "github.com/janrs-io/Jgrpc/src/pongservice/genproto/v1"
 	"google.golang.org/grpc/grpclog"
 
 	"github.com/janrs-io/Jgrpc/src/pingservice/config"
 	v1 "github.com/janrs-io/Jgrpc/src/pingservice/genproto/v1"
+	pongclientv1 "github.com/janrs-io/Jgrpc/src/pongservice/genproto/v1"
 )
 
 // Server Server struct
