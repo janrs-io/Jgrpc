@@ -1,0 +1,15 @@
+# grpc config
+grpc:
+  host: ""
+  port: ":50052"
+  name: "ping-grpc"
+
+# http config
+http:
+  host: ""
+  port: ":9002"
+  name: "ping-http"
+
+# service client
+client:
+  pong: ":50051"

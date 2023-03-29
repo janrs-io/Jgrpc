@@ -1,0 +1,16 @@
+version: v1
+plugins:
+  - plugin: go
+    out: genproto/v1
+    opt:
+      - paths=source_relative
+  - plugin: go-grpc
+    out: genproto/v1
+    opt:
+      - paths=source_relative
+  - plugin: grpc-gateway
+    out: genproto/v1/gw
+    opt:
+      - paths=source_relative
+      - grpc_api_configuration=proto/v1/pingservice.yaml
+      - standalone=true

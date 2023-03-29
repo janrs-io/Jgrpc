@@ -1,0 +1,7 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+    - selector: proto.v1.PingService.Ping
+      get: /ping.v1.ping
