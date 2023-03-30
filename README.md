@@ -21,7 +21,7 @@ It will return `json` data:
 And enter this address in browser to visit `pingservice` http server:
 
 ```text
-127.0.01:9002/ping.v1.ping?msg=best%20practice
+127.0.0.1:9002/ping.v1.ping?msg=best%20practice
 ```
 
 It will return `json` data:
