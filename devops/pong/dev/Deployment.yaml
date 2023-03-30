@@ -1,28 +1,25 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth
-  namespace: rgrpc-dev
+  name: pong
+  namespace: jgrpc-dev
   labels:
-    app: auth
+    app: pong
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: pong
   template:
     metadata:
       labels:
-        app: auth
+        app: pong
     spec:
       imagePullSecrets:
-        - name: registry-secret
-      volumes:
-        - name: timezone
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
+        - name: your-registry-secret
       containers:
-        - name: auth
+        - name: pong
           image: REGISTRY_URL/PROJECT_NAME/IMAGE_NAME:IMAGE_VERSION
           imagePullPolicy: Always
           ports:

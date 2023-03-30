@@ -18,22 +18,22 @@ pipeline{
         REGISTRY_URL = "YOUR_REGISTRY_URL"
 
         // Project Project Name
-        PROJECT_NAME = "rgrpc-dev"
+        PROJECT_NAME = "jgrpc-dev"
 
         // Image Name
-        IMAGE_NAME = "permission"
+        IMAGE_NAME = "pong"
 
         // Image Version
         IMAGE_VERSION = "$BUILD_ID"
 
         // Dockerfile File Path
-        DOCKER_FILE = "$WORKSPACE/devops/permission/dev/Dockerfile"
+        DOCKER_FILE = "$WORKSPACE/devops/pong/dev/Dockerfile"
 
         // Deploy File Path
-        DEPLOY_FILE = "$WORKSPACE/devops/permission/dev/Deployment.yaml"
+        DEPLOY_FILE = "$WORKSPACE/devops/pong/dev/Deployment.yaml"
 
         // Service File Path
-        SERVICE_FILE = "$WORKSPACE/devops/permission/dev/Service.yaml"
+        SERVICE_FILE = "$WORKSPACE/devops/pong/dev/Service.yaml"
 
         // Harbor Image name
         REGISTRY_IMAGE_NAME = "$REGISTRY_URL/$PROJECT_NAME/$IMAGE_NAME:$IMAGE_VERSION"

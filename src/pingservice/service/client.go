@@ -37,7 +37,7 @@ func NewPongClient(conf *config.Config) (pongclientv1.PongServiceClient, error) 
 
 	conn, err := grpc.DialContext(ctx, conf.Client.Pong, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		fmt.Println("dial auth server failed.[ERROR]=>" + err.Error())
+		fmt.Println("dial ping server failed.[ERROR]=>" + err.Error())
 		return nil, err
 	}
 	client := pongclientv1.NewPongServiceClient(conn)

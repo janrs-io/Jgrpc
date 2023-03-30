@@ -2,19 +2,19 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: rgrpc
-  namespace: rgrpc-dev
+  name: jgrpc
+  namespace: jgrpc-dev
 spec:
   hosts:
     - "dev.api.your-domain.com"
   gateways:
-    - rgrpc
+    - jgrpc
   http:
     - match:
         - uri:
-            prefix: /permission
+            prefix: /
       route:
         - destination:
             port:
               number: 80
-            host: permission
+            host: ping

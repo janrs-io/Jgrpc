@@ -2,8 +2,8 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: rgrpc
-  namespace: rgrpc-dev
+  name: jgrpc
+  namespace: jgrpc-dev
 spec:
   selector:
     istio: ingressgateway

@@ -12,7 +12,7 @@ WORKDIR /opt/service/
 # Copy project
 COPY src ./
 
-WORKDIR permissionservice
+WORKDIR pongservice
 
 # Set environment variables
 ENV GO111MODULE=on
@@ -22,7 +22,7 @@ ENV GOPROXY=https://goproxy.cn
 RUN go mod download
 
 # Compiling Projects
-RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o permission cmd/main.go
+RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o pong cmd/main.go
 
 ##-----
 # RUN
@@ -31,16 +31,16 @@ RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o permission cmd/main.go
 FROM busybox AS runner
 
 # Create a working directory of project executables
-RUN mkdir -p /opt/service/permissionservice
+RUN mkdir -p /opt/service/pongservice
 
 # Use the same working directory
-WORKDIR /opt/service/permissionservice
+WORKDIR /opt/service/pongservice
 
 # Copy the compiled file
-COPY --from=builder /opt/service/permissionservice .
+COPY --from=builder /opt/service/pongservice .
 
-# Set the port on which to run the permission service
+# Set the port on which to run the pong service
 EXPOSE 9001
 EXPOSE 50051
 
-CMD ["./permission"]
+CMD ["./pong"]

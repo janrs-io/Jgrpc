@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-gw
-  namespace: rgrpc-dev
+  name: ping-http
+  namespace: jgrpc-dev
 spec:
   type: ClusterIP
   selector:
-    app: auth
+    app: ping
   ports:
     - port: 9001
       protocol: TCP
@@ -17,12 +17,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-server
-  namespace: rgrpc-dev
+  name: ping-rpc
+  namespace: jgrpc-dev
 spec:
   type: ClusterIP
   selector:
-    app: auth
+    app: ping
   ports:
     - port: 50051
       protocol: TCP

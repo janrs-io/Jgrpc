@@ -1,29 +1,24 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: permission
-  namespace: rgrpc-dev
+  name: ping
+  namespace: jgrpc-dev
   labels:
-    app: permission
+    app: ping
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: permission
+      app: ping
   template:
     metadata:
       labels:
-        app: permission
+        app: auth
     spec:
       imagePullSecrets:
-        - name: registry-secret
-      volumes:
-        - name: timezone
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
+        - name: your-registry-secret
       containers:
-        - name: permission
+        - name: ping
           image: REGISTRY_URL/PROJECT_NAME/IMAGE_NAME:IMAGE_VERSION
           imagePullPolicy: Always
           ports:
