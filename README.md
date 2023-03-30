@@ -1,4 +1,17 @@
-# Jgrpc
+# [Jgrpc](https://github.com/janrs-io/Jgrpc "Jgrpc")
+
+This [project](https://github.com/janrs-io/Jgrpc "project") provides a reference for best practices for developing
+microservices based on `Go/Grpc/kubernetes/Istio`.
+
+And it implements `CICD` based on `Jenkins/Gitlab/Harbor`.
+
+And use the [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway "grpc-gateway") as a gateway proxy.
+
+This best practice is divided into three parts:
+
+1. Create a microservice named `pongservice`
+2. Create a microservice named `pingservice` and access `pongservice`
+3. Create a `CICD` deployment process base on `Jenkins/Gitlab/Harbor`
 
 # QuickStart
 
