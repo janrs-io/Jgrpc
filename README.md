@@ -4,7 +4,7 @@
 
 Just clone the project and run `go run cmd/main.go` in the `pingservice` and `pongservice` directory.
 
-And enter this address to visit `pong` http server:
+And enter this address in browser to visit `pong` http server:
 
 ```text
 http://127.0.0.1:9001/pong.v1.pong?msg=best%20practive
