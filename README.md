@@ -1,6 +1,6 @@
-# [Jgrpc](https://github.com/janrs-io/Jgrpc "Jgrpc")
+# Jgrpc
 
-This [project](https://github.com/janrs-io/Jgrpc "project") provides a reference for best practices for developing
+This project provides a reference for best practices for developing
 microservices based on `Go/Grpc/kubernetes/Istio`.
 
 And it implements `CICD` based on `Jenkins/Gitlab/Harbor`.
