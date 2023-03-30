@@ -13,10 +13,6 @@ This best practice is divided into three parts:
 2. [Create a microservice named `pingservice` and access `pongservice`](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part02.md "Create a microservice named `pingservice` and access `pongservice`")
 3. [Create a `CICD` deployment process base on `Jenkins/Gitlab/Harbor`](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part03.md "Create a `CICD` deployment process base on `Jenkins/Gitlab/Harbor`")
 
-1. Create a microservice named `pongservice`
-2. Create a microservice named `pingservice` and access `pongservice`
-3. Create a `CICD` deployment process base on `Jenkins/Gitlab/Harbor`
-
 # QuickStart
 
 Just clone the project and run `go run cmd/main.go` in the `pingservice` and `pongservice` directory.
