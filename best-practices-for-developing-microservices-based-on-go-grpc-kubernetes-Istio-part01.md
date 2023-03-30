@@ -9,9 +9,9 @@ And use the [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway "grpc-
 
 This best practice is divided into three parts:
 
-1. Create a microservice named `pongservice`
-2. Create a microservice named `pingservice` and access `pongservice`
-3. Create a `CICD` deployment process base on `Jenkins/Gitlab/Harbor`
+1. [Create a microservice named `pongservice`](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part01.md "Create a microservice named `pongservice`")
+2. [Create a microservice named `pingservice` and access `pongservice`](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part02.md "Create a microservice named `pingservice` and access `pongservice`")
+3. [Create a `CICD` deployment process base on `Jenkins/Gitlab/Harbor`](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part03.md "Create a `CICD` deployment process base on `Jenkins/Gitlab/Harbor`")
 
 In this part, we will create the `pongservice` microservice.
 
