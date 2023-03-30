@@ -1,3 +1,11 @@
+[Best practices for developing microservices based on Go/Grpc/kubernetes/Istio - Part01](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part01.md "Best practices for developing microservices based on Go/Grpc/kubernetes/Istio - Part01")
+
+[Best practices for developing microservices based on Go/Grpc/kubernetes/Istio - Part02](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part02.md "Best practices for developing microservices based on Go/Grpc/kubernetes/Istio - Part02")
+
+[Best practices for developing microservices based on Go/Grpc/kubernetes/Istio - Part03](https://github.com/janrs-io/Jgrpc/blob/master/best-practices-for-developing-microservices-based-on-go-grpc-kubernetes-Istio-part03.md "Best practices for developing microservices based on Go/Grpc/kubernetes/Istio - Part03")
+
+***
+
 # [Jgrpc](https://github.com/janrs-io/Jgrpc "Jgrpc")
 
 This [project](https://github.com/janrs-io/Jgrpc "project") provides a reference for best practices for developing
