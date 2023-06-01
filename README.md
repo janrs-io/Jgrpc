@@ -2,6 +2,10 @@
 
 **如果觉得该项目对你的学习有帮助，点个 star**
 
+## 完整的案例代码直达
+
+https://github.com/janrs-io/Jgrpc-example
+
 中文文档地址：
 
 ###### [基于Go/Grpc/kubernetes/Istio开发微服务的最佳实践尝试 - 1/3](https://janrs.com/br6f "基于Go/Grpc/kubernetes/Istio开发微服务的最佳实践尝试 - 1/3")
